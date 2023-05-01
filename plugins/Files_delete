@@ -1,16 +1,16 @@
-from info import ADMINS,
+from info import ADMINS, COLLECTION_NAME, DATABASE_NAME, DATABASE_URI, ADMINS
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 import pymongo
 from pymongo import MongoClient
 
 # set up the MongoDB client
-mongo_client = MongoClient("mongodb://<your-mongodb-uri>")
-mongo_db = mongo_client["<your-database-name>"]
-mongo_collection = mongo_db["<your-collection-name>"]
+mongo_client = MongoClient("DATABASE_URI")
+mongo_db = mongo_client["DATABASE_NAME"]
+mongo_collection = mongo_db["COLLECTION_NAME"]
 
 # define the admin user ID
-ADMIN_USER_ID = 123456789 # replace with your admin user ID
+ADMIN_USER_ID = ADMINS # replace with your admin user ID
 
 # define a command handler for the /delete command
 @Client.on_message(filters.command("delete") & filters.user(ADMIN_USER_ID))
